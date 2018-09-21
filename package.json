@@ -1,0 +1,37 @@
+{
+  "name": "easing-animation-frames",
+  "version": "0.0.1",
+  "description": "Lightweight library to create animation",
+  "main": "./src/index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "start": "npm i && cd ./example && npm i && npm run start",
+    "eslint": "eslint --ext .js ./src/",
+    "jest": "jest",
+    "test": "npm run eslint && jest"
+  },
+  "author": "taisuke-j",
+  "license": "MIT",
+  "keywords": [
+    "requestAnimationFrame",
+    "raf",
+    "animation",
+    "transition",
+    "easing",
+    "ease"
+  ],
+  "typings": "./src/index.d.ts",
+  "dependencies": {
+    "eases": "^1.0.8"
+  },
+  "devDependencies": {
+    "eslint": "^5.5.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.1",
+    "jest": "^23.6.0"
+  }
+}

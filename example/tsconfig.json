@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "strict": true,
+    "noEmit": true,
+    "pretty": true
+  },
+  "include": ["./src/**/*", "../src/**/*"],
+  "exclude": ["node_modules"]
+}
