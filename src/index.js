@@ -28,14 +28,17 @@ const easingAnimationFrames = ({
 
   const easingFunc = easing[easingType];
   const durationInMs = duration * 1000;
+
   let requestId = null;
   let startTime = null;
   let passedTime = 0;
   let progress = 0;
+
   let framesCancelled = false;
   let framesResumed = false;
   let resumeFrames = null;
 
+  // Function to stop the transition
   const cancelFrames = () => {
     framesCancelled = true;
   };
@@ -55,8 +58,10 @@ const easingAnimationFrames = ({
       // Dispatch request for the next frame
       requestId = raf(frame);
 
-      // Theses are passed to the template
+      // Progress value (from 0 to 1) based on the time passed
       progress = easingFunc(passedTime / durationInMs);
+
+      // Function to resume the transition if it's been stopped by `cancelFrames`
       resumeFrames = () => {
         if (!framesCancelled) {
           return;
