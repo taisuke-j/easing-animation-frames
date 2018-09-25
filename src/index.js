@@ -8,7 +8,7 @@ const caf = window.cancelAnimationFrame || (id => clearTimeout(id));
  * easingType - Easing function name of `eases` module
  * duration - Transition duration in seconds
  * template (required) - Receives the current progress, stop function and resume function
- * callback - Called after the transition completes
+ * complete - Called after the transition completes
  */
 
 const defaultOptions = {
@@ -16,12 +16,12 @@ const defaultOptions = {
   easingType: 'cubicInOut',
 };
 
-const easingAnimationFrames = ({
+export default function ({
   easingType = defaultOptions.easingType,
   duration = defaultOptions.duration,
   template,
-  callback,
-} = {}) => {
+  complete,
+} = {}) {
   if (!template) {
     return;
   }
@@ -45,12 +45,13 @@ const easingAnimationFrames = ({
 
   // Callback function for every requestAnimationFrame
   const frame = (timestamp) => {
+    const currentTime = timestamp || new Date().getTime();
     if (framesResumed) {
-      startTime = timestamp - passedTime;
+      startTime = currentTime - passedTime;
       framesResumed = false;
     } else {
-      startTime = startTime || timestamp;
-      passedTime = timestamp - startTime;
+      startTime = startTime || currentTime;
+      passedTime = currentTime - startTime;
     }
 
     // Continue until the time is up unless the cancel function is called
@@ -83,14 +84,12 @@ const easingAnimationFrames = ({
     // Transition complete
     if (passedTime >= durationInMs) {
       template(1, null, null);
-      if (callback) {
-        callback();
+      if (complete) {
+        complete();
       }
     }
   };
 
   // Start the transtion
   requestId = raf(frame);
-};
-
-export default easingAnimationFrames;
+}

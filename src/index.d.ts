@@ -35,7 +35,7 @@ export interface EasingAnimationFramesProps {
   easingType?: EasingType;
   duration?: number;
   template: Function;
-  callback?: Function;
+  complete?: Function;
 }
 export interface stop {() :void}
 export interface resume {() :void}

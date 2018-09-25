@@ -47,7 +47,7 @@ module.exports = () => ({
         include: [
           path.resolve(__dirname, 'src/components'),
           path.resolve(__dirname, './../src'), // Local module
-          path.resolve(__dirname, './node_modules/@taisuke-j/react-grid-view'), // Node module
+          path.resolve(__dirname, './node_modules/easing-animaiton-frames'), // Node module
         ],
         loader: 'babel-loader',
         options: {
