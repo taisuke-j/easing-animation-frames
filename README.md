@@ -1,5 +1,7 @@
 # Easing Animaiton Frames
 
+[![Build Status](https://travis-ci.org/taisuke-j/easing-animation-frames.svg?branch=master)](https://travis-ci.org/taisuke-j/easing-animation-frames)
+
 This is a tiny library for creating CPU-friendly easing animations with [requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) API and [Robert Penner's easing equations](http://robertpenner.com/easing/). Suggestions and pull requests for optimization are welcome.
 
 ![Bar Animation](https://raw.githubusercontent.com/wiki/taisuke-j/easing-animation-frames/images/readme-bar.gif)
