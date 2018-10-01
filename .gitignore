@@ -9,6 +9,7 @@ coverage
 build
 
 # Misc
+quick_tests
 .DS_Store
 .vscode
 .env

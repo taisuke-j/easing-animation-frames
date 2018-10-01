@@ -34,11 +34,20 @@ export type EasingType =
 export interface EasingAnimationFramesProps {
   easingType?: EasingType;
   duration?: number;
-  template: Function;
-  complete?: Function;
+  template: (progress: number, stop: stop, resume: resume, restart: restart) => void;
+  complete?: () => void;
 }
-export interface stop {() :void}
-export interface resume {() :void}
+
+export interface restartFramesProps {
+  restartEasingType?: EasingType;
+  restartDuration?: number;
+  restartTemplate: (progress: number, stop: stop, resume: resume, restart: restart) => void;
+  restartComplete?: () => void;
+}
+
+export type stop = {() :void} | null
+export type resume = {() :void} | null
+export type restart = {(settings: restartFramesProps) :void} | null
 
 declare function easingAnimationFrames(props: EasingAnimationFramesProps): void;
 

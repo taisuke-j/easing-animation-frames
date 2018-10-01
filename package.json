@@ -12,6 +12,10 @@
     "jest": "jest",
     "test": "npm run eslint && jest"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taisuke-j/easing-animation-frames.git"
+  },
   "author": "taisuke-j",
   "license": "MIT",
   "keywords": [
@@ -22,6 +26,10 @@
     "easing",
     "ease"
   ],
+  "bugs": {
+    "url": "https://github.com/taisuke-j/easing-animation-frames/issues"
+  },
+  "homepage": "https://github.com/taisuke-j/easing-animation-frames#readme",
   "typings": "./src/index.d.ts",
   "dependencies": {
     "eases": "^1.0.8"

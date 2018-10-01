@@ -7,7 +7,7 @@ This is a tiny library for creating CPU-friendly easing animations with [request
 ![Bar Animation](https://raw.githubusercontent.com/wiki/taisuke-j/easing-animation-frames/images/readme-bar.gif)
 
 ## How to use
-Select an easing type and pass a callback function to run for every animation frame which manipulates target DOM elements.
+Select an easing type (`cubicInOut` by default) and pass a callback function to run for every animation frame which manipulates target DOM elements.
 
 #### Minimum settings
 ```
@@ -26,7 +26,7 @@ easingAnimationFrames({
 });
 ```
 
-Duration is set to be .4 seconds by default, which you can change. Once the animation starts, the callback function (template) receives the progress value (from 0 to 1) that you can use to render the animation. The example above uses `(progress * 75)`% for the width of the bar, based on the time passed.
+Duration is set to be 0.4 seconds by default, which you can change. Once the animation starts, the callback function (template) receives the progress value (from 0 to 1) that you can use to render the animation. The example above uses `(progress * 75)`% for the width of the bar, based on the time passed.
 
 `npm start` to see the example.
 

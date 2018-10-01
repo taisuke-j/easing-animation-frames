@@ -7,7 +7,7 @@ const caf = window.cancelAnimationFrame || (id => clearTimeout(id));
  * EASING ANIMATION FRAMES
  * easingType - Easing function name of `eases` module
  * duration - Transition duration in seconds
- * template (required) - Receives the current progress, stop function and resume function
+ * template (required) - Receives the current progress, stop, resume and restart functions
  * complete - Called after the transition completes
  */
 
@@ -20,31 +20,36 @@ export default function ({
   easingType = defaultOptions.easingType,
   duration = defaultOptions.duration,
   template,
-  complete,
+  complete = null,
 } = {}) {
   if (!template) {
     return;
   }
 
-  const easingFunc = easing[easingType];
-  const durationInMs = duration * 1000;
+  // Transition settings
+  let easingFunc = easing[easingType];
+  let durationInMs = duration * 1000;
+  let templateFunc = template;
+  let completeFunc = complete;
 
+  // Managing progress
   let requestId = null;
   let startTime = null;
   let passedTime = 0;
   let progress = 0;
 
+  // Stop, resume and restart
+  let framesComplete = false;
   let framesCancelled = false;
   let framesResumed = false;
+  let framesRestarted = false;
+  let cancelFrames = null;
   let resumeFrames = null;
-
-  // Function to stop the transition
-  const cancelFrames = () => {
-    framesCancelled = true;
-  };
+  let restartFrames = null;
 
   // Callback function for every requestAnimationFrame
   const frame = (timestamp) => {
+    // The latter fallback is for setTimeout and unit tests
     const currentTime = timestamp || new Date().getTime();
     if (framesResumed) {
       startTime = currentTime - passedTime;
@@ -56,37 +61,98 @@ export default function ({
 
     // Continue until the time is up unless the cancel function is called
     if (passedTime < durationInMs && !framesCancelled) {
-      // Dispatch request for the next frame
+      // Dispatch a new request for the next frame
       requestId = raf(frame);
 
       // Progress value (from 0 to 1) based on the time passed
       progress = easingFunc(passedTime / durationInMs);
 
-      // Function to resume the transition if it's been stopped by `cancelFrames`
-      resumeFrames = () => {
-        if (!framesCancelled) {
-          return;
-        }
-        framesCancelled = false;
-        framesResumed = true;
-        requestId = raf(frame);
-      };
-
       try {
         // Render the frame
-        template(progress, cancelFrames, resumeFrames);
+        templateFunc(progress, cancelFrames, resumeFrames, restartFrames);
       } catch (e) {
         caf(requestId);
       }
       return;
     }
 
+    // After `restartFrames` is called, the next frame that has been requested will be cancelled,
+    // and it will restart transition with new settings
+    if (framesRestarted) {
+      // Resets settings
+      framesCancelled = false;
+      framesRestarted = false;
+
+      // Restart
+      raf(frame);
+      return;
+    }
+
     // Transition complete
     if (passedTime >= durationInMs) {
-      template(1, null, null);
-      if (complete) {
-        complete();
+      templateFunc(1, null, null, restartFrames);
+
+      framesComplete = true;
+      requestId = null;
+
+      if (completeFunc) {
+        completeFunc();
       }
+    }
+  };
+
+  // Function to stop the transition
+  cancelFrames = () => {
+    framesCancelled = true;
+  };
+
+  // Function to resume the transition if it's been stopped by `cancelFrames`
+  resumeFrames = () => {
+    if (!framesCancelled) {
+      return;
+    }
+    framesCancelled = false;
+    framesResumed = true;
+    requestId = raf(frame);
+  };
+
+  // Function to restart transition with new settings
+  restartFrames = ({
+    restartEasingType = defaultOptions.easingType,
+    restartDuration = defaultOptions.duration,
+    restartTemplate,
+    restartComplete = null,
+  } = {}) => {
+    if (!restartTemplate) {
+      return;
+    }
+
+    // Update settings
+    easingFunc = easing[restartEasingType];
+    durationInMs = restartDuration * 1000;
+    templateFunc = restartTemplate;
+    completeFunc = restartComplete;
+
+    startTime = null;
+    passedTime = 0;
+    progress = 0;
+
+    // If there is transition already running
+    if (!framesComplete && !framesCancelled) {
+      cancelFrames();
+      framesRestarted = true;
+    }
+
+    // If the transition has been stopped
+    if (framesCancelled) {
+      framesCancelled = false;
+      requestId = raf(frame);
+    }
+
+    // If the previous transition is already complete
+    if (framesComplete) {
+      framesComplete = false;
+      requestId = raf(frame);
     }
   };
 
