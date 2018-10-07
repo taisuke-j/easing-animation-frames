@@ -47,7 +47,7 @@ module.exports = () => ({
         include: [
           path.resolve(__dirname, 'src/components'),
           path.resolve(__dirname, './../src'), // Local module
-          path.resolve(__dirname, './node_modules/easing-animaiton-frames'), // Node module
+          path.resolve(__dirname, './node_modules/easing-animation-frames'), // Node module
         ],
         loader: 'babel-loader',
         options: {
