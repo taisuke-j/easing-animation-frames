@@ -32,5 +32,7 @@ Duration is set to be 0.4 seconds by default, which you can change. Once the ani
 
 The template function also provides `stop` and `resume` functions, if you want to stop the animation before it completes and resume it.
 
+[React Easing Animation](https://github.com/taisuke-j/react-easing-animation) is a React HOC implementation of this library.
+
 ## Browser Support
 It uses `requestAnimationFrame`, which should be supported for [most of the modern browsers](https://caniuse.com/#feat=requestanimationframe).
