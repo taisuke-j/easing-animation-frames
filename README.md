@@ -1,4 +1,4 @@
-# Easing Animaiton Frames
+# Easing Animation Frames
 
 [![Build Status](https://travis-ci.org/taisuke-j/easing-animation-frames.svg?branch=master)](https://travis-ci.org/taisuke-j/easing-animation-frames)
 
