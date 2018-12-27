@@ -24,7 +24,7 @@ easingAnimationFrames({
 ```
 easingAnimationFrames({
   easingType: "quadInOut", // Easing function name
-  duration: 3, // Animation duration in milliseconds
+  duration: 3000, // Animation duration in milliseconds
   template: updateBarWidth, // Callback function to run for every frame, which receives progress from 0 to 1
   complete: animationComplete, // Callback funciton to run on completion
 });
