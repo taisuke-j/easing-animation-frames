@@ -1,18 +1,19 @@
 import * as easing from 'eases';
 
+// Polyfills
 const raf = window.requestAnimationFrame || (callback => setTimeout(callback, 1000 / 60));
 const caf = window.cancelAnimationFrame || (id => clearTimeout(id));
 
 /**
  * EASING ANIMATION FRAMES
  * easingType - Easing function name of `eases` module
- * duration - Transition duration in seconds
+ * duration - Transition duration in milliseconds
  * template (required) - Receives the current progress, stop, resume and restart functions
  * complete - Called after the transition completes
  */
 
 const defaultOptions = {
-  duration: 0.4,
+  duration: 4000,
   easingType: 'cubicInOut',
 };
 
@@ -28,7 +29,7 @@ export default function ({
 
   // Transition settings
   let easingFunc = easing[easingType];
-  let durationInMs = duration * 1000;
+  let framesDuration = duration;
   let templateFunc = template;
   let completeFunc = complete;
 
@@ -37,15 +38,15 @@ export default function ({
   let startTime = null;
   let passedTime = 0;
   let progress = 0;
+  let cancelFrames = null;
+  let resumeFrames = null;
+  let restartFrames = null;
 
   // Stop, resume and restart
   let framesComplete = false;
   let framesCancelled = false;
   let framesResumed = false;
   let framesRestarted = false;
-  let cancelFrames = null;
-  let resumeFrames = null;
-  let restartFrames = null;
 
   // Callback function for every requestAnimationFrame
   const frame = (timestamp) => {
@@ -60,12 +61,12 @@ export default function ({
     }
 
     // Continue until the time is up unless the cancel function is called
-    if (passedTime < durationInMs && !framesCancelled) {
+    if (passedTime < framesDuration && !framesCancelled) {
       // Dispatch a new request for the next frame
       requestId = raf(frame);
 
       // Progress value (from 0 to 1) based on the time passed
-      progress = easingFunc(passedTime / durationInMs);
+      progress = easingFunc(passedTime / framesDuration);
 
       try {
         // Render the frame
@@ -89,7 +90,7 @@ export default function ({
     }
 
     // Transition complete
-    if (passedTime >= durationInMs) {
+    if (passedTime >= framesDuration) {
       templateFunc(1, null, null, restartFrames);
 
       framesComplete = true;
@@ -129,7 +130,7 @@ export default function ({
 
     // Update settings
     easingFunc = easing[restartEasingType];
-    durationInMs = restartDuration * 1000;
+    framesDuration = restartDuration;
     templateFunc = restartTemplate;
     completeFunc = restartComplete;
 

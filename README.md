@@ -24,13 +24,13 @@ easingAnimationFrames({
 ```
 easingAnimationFrames({
   easingType: "quadInOut", // Easing function name
-  duration: 3, // Animation duration in seconds
+  duration: 3, // Animation duration in milliseconds
   template: updateBarWidth, // Callback function to run for every frame, which receives progress from 0 to 1
   complete: animationComplete, // Callback funciton to run on completion
 });
 ```
 
-Duration is set to be 0.4 seconds by default, which you can change. Once the animation starts, the callback function (template) receives the progress value (from 0 to 1) that you can use to render the animation. The example above uses `(progress * 75)`% for the width of the bar, based on the time passed.
+Duration is set to be 4,000 milliseconds by default, which you can change. Once the animation starts, the callback function (template) receives the progress value (from 0 to 1) that you can use to render the animation. The example above uses `(progress * 75)`% for the width of the bar, based on the time passed.
 
 `npm start` to see the example.
 

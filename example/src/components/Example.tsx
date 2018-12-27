@@ -29,7 +29,7 @@ class Percentage extends React.Component<IProps, IState> {
   public componentDidMount() {
     this.isMounted = true;
     easingAnimationFrames({
-      duration: 3,
+      duration: 3000,
       easingType: "quadInOut",
       template: this.setProgress,
     });
@@ -63,7 +63,7 @@ class Percentage extends React.Component<IProps, IState> {
     const rawPercentage = percentage * progress;
     const roundedPercentage = Math.round(rawPercentage);
     const restartOptions = {
-      restartDuration: 3,
+      restartDuration: 3000,
       restartTemplate: this.setProgress,
     };
 
