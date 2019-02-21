@@ -32,7 +32,7 @@ easingAnimationFrames({
 
 Duration is set to be 4,000 milliseconds by default, which you can change. Once the animation starts, the callback function (template) receives the progress value (from 0 to 1) that you can use to render the animation. The example above uses `(progress * 75)`% for the width of the bar, based on the time passed.
 
-`npm start` to see the example.
+`npm start` to see the example (Node v10.15.1+).
 
 The template function also provides `stop` and `resume` functions, if you want to stop the animation before it completes and resume it.
 

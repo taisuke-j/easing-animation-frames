@@ -1,4 +1,4 @@
-import * as easing from 'eases';
+import * as eases from 'eases-jsnext';
 
 // Polyfills
 const raf = window.requestAnimationFrame || (callback => setTimeout(callback, 1000 / 60));
@@ -28,7 +28,7 @@ export default function ({
   }
 
   // Transition settings
-  let easingFunc = easing[easingType];
+  let easingFunc = eases[easingType];
   let framesDuration = duration;
   let templateFunc = template;
   let completeFunc = complete;
@@ -129,7 +129,7 @@ export default function ({
     }
 
     // Update settings
-    easingFunc = easing[restartEasingType];
+    easingFunc = eases[restartEasingType];
     framesDuration = restartDuration;
     templateFunc = restartTemplate;
     completeFunc = restartComplete;
