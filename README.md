@@ -15,6 +15,11 @@ Select an easing type (`cubicInOut` by default) and pass a callback function to 
 
 #### Minimum settings
 ```
+// Template function
+const updateBarWidth = ({ progress }) => {
+  // Update the DOM with the progress value
+}
+
 easingAnimationFrames({
   template: updateBarWidth // Callback function to run for every frame, which receives progress from 0 to 1
 });
@@ -22,6 +27,16 @@ easingAnimationFrames({
 
 #### With optional settings
 ```
+// Template function
+const updateBarWidth = ({
+  progress,
+  stopFrames, // Stops the animation
+  resumeFrames, // Resumes the animation
+  restartFrames, // Restarts the animation
+}) => {
+  // Update the DOM with the progress value
+}
+
 easingAnimationFrames({
   easingType: "quadInOut", // Easing function name
   duration: 3000, // Animation duration in milliseconds

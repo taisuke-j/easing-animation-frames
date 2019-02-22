@@ -38,7 +38,7 @@ export default function ({
   let startTime = null;
   let passedTime = 0;
   let progress = 0;
-  let cancelFrames = null;
+  let stopFrames = null;
   let resumeFrames = null;
   let restartFrames = null;
 
@@ -70,7 +70,12 @@ export default function ({
 
       try {
         // Render the frame
-        templateFunc(progress, cancelFrames, resumeFrames, restartFrames);
+        templateFunc({
+          progress,
+          stopFrames,
+          resumeFrames,
+          restartFrames,
+        });
       } catch (e) {
         caf(requestId);
       }
@@ -91,7 +96,12 @@ export default function ({
 
     // Transition complete
     if (passedTime >= framesDuration) {
-      templateFunc(1, null, null, restartFrames);
+      templateFunc({
+        progress: 1,
+        stopFrames: null,
+        resumeFrames: null,
+        restartFrames,
+      });
 
       framesComplete = true;
       requestId = null;
@@ -103,11 +113,11 @@ export default function ({
   };
 
   // Function to stop the transition
-  cancelFrames = () => {
+  stopFrames = () => {
     framesCancelled = true;
   };
 
-  // Function to resume the transition if it's been stopped by `cancelFrames`
+  // Function to resume the transition if it's been stopped by `stopFrames`
   resumeFrames = () => {
     if (!framesCancelled) {
       return;
@@ -140,7 +150,7 @@ export default function ({
 
     // If there is transition already running
     if (!framesComplete && !framesCancelled) {
-      cancelFrames();
+      stopFrames();
       framesRestarted = true;
     }
 

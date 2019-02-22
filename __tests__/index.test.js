@@ -2,7 +2,7 @@ import easingAnimationFrames from '../src';
 
 describe('easingAnimationFrames', () => {
   it('should call template function', (done) => {
-    const template = (progress) => {
+    const template = ({ progress }) => {
       expect(progress).toBe(0);
       done();
     };

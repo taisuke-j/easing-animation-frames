@@ -29,26 +29,33 @@ export type EasingType =
 	| 'quintOut'
 	| 'sineInOut'
 	| 'sineIn'
-	| 'sineOut'
+  | 'sineOut'
 
-export interface EasingAnimationFramesProps {
+export interface easingAnimationFramesOptions {
   easingType?: EasingType;
   duration?: number;
-  template: (progress: number, stop: stop, resume: resume, restart: restart) => void;
+  template: (options: templateOptions) => void;
   complete?: () => void;
 }
 
-export interface restartFramesProps {
+export interface restartFramesOptions {
   restartEasingType?: EasingType;
   restartDuration?: number;
-  restartTemplate: (progress: number, stop: stop, resume: resume, restart: restart) => void;
+  restartTemplate: (options: templateOptions) => void;
   restartComplete?: () => void;
 }
 
-export type stop = {() :void} | null
-export type resume = {() :void} | null
-export type restart = {(settings: restartFramesProps) :void} | null
+export interface templateOptions {
+  progress: number,
+  stopFrames?: stopFramesFunction,
+  resumeFrames?: resumeFramesFunction,
+  restartFrames?: restartFramesFunction
+}
 
-declare function easingAnimationFrames(props: EasingAnimationFramesProps): void;
+export type stopFramesFunction = {(): void} | null | undefined
+export type resumeFramesFunction = {(): void} | null | undefined
+export type restartFramesFunction = {(options: restartFramesOptions): void} | null | undefined
+
+declare function easingAnimationFrames(props: easingAnimationFramesOptions): void;
 
 export default easingAnimationFrames;
