@@ -1,6 +1,6 @@
 {
-  "name": "@prinzdezibel/easing-animation-frames",
-  "version": "0.0.9",
+  "name": "easing-animation-frames",
+  "version": "0.0.8",
   "description": "Lightweight library for creating animation",
   "module": "./src/index.js",
   "directories": {
