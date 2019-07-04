@@ -1,8 +1,8 @@
 import * as eases from 'eases-jsnext';
 
 // Polyfills
-const raf = typeof window !== 'undefined' && window.requestAnimationFrame || (callback => setTimeout(callback, 1000 / 60));
-const caf = typeof window !== 'undefined' && window.cancelAnimationFrame || (id => clearTimeout(id));
+const raf = typeof window !== 'undefined' ? window.requestAnimationFrame : (callback => setTimeout(callback, 1000 / 60));
+const caf = typeof window !== 'undefined' ? window.cancelAnimationFrame : (id => clearTimeout(id));
 
 /**
  * EASING ANIMATION FRAMES
