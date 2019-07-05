@@ -10,3 +10,6 @@
 ## 0.0.9 (2019-07-05)
 - Added `window` object check for SSR
 - Added `module` field in `package.json` for Rollup and Webpack
+
+## 0.0.10 (2019-07-06)
+- Fixed `window` object check for SSR
