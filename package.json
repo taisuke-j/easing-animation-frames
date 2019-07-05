@@ -2,7 +2,7 @@
   "name": "easing-animation-frames",
   "version": "0.0.8",
   "description": "Lightweight library for creating animation",
-  "main": "./src/index.js",
+  "module": "./src/index.js",
   "directories": {
     "example": "example"
   },
