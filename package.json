@@ -1,6 +1,6 @@
 {
   "name": "easing-animation-frames",
-  "version": "0.0.10",
+  "version": "1.0.0",
   "description": "Lightweight library for creating animation",
   "module": "./src/index.js",
   "directories": {

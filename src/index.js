@@ -79,6 +79,7 @@ export default function ({
           restartFrames,
         });
       } catch (e) {
+        console.error(e); // eslint-disable-line no-console
         caf(requestId);
       }
       return;
