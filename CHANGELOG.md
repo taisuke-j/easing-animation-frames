@@ -14,6 +14,6 @@
 ## 0.0.10 (2019-07-06)
 - Fixed `window` object check for SSR
 
-## 1.0.1 (2021-11-14)
+## 1.0.2 (2021-11-15)
 - Reduced memory allocation to prevent GC pause
 - Updated examples
