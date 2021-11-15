@@ -1,10 +1,10 @@
-import * as eases from 'eases-jsnext';
+import * as eases from "eases-jsnext";
 
 // Polyfills
-const raf = (typeof window !== 'undefined' && window.requestAnimationFrame)
-  ? window.requestAnimationFrame : ((callback) => setTimeout(callback, 1000 / 60));
-const caf = (typeof window !== 'undefined' && window.cancelAnimationFrame)
-  ? window.cancelAnimationFrame : ((id) => clearTimeout(id));
+const raf = (typeof window !== "undefined" && window.requestAnimationFrame)
+  ? window.requestAnimationFrame : (callback => setTimeout(callback, 1000 / 60));
+const caf = (typeof window !== "undefined" && window.cancelAnimationFrame)
+  ? window.cancelAnimationFrame : (id => clearTimeout(id));
 
 /**
  * EASING ANIMATION FRAMES
@@ -16,15 +16,16 @@ const caf = (typeof window !== 'undefined' && window.cancelAnimationFrame)
 
 const defaultOptions = {
   duration: 4000,
-  easingType: 'cubicInOut',
+  easingType: "cubicInOut",
 };
 
-export default ({
+// eslint-disable-next-line import/no-anonymous-default-export
+export default function ({
   easingType = defaultOptions.easingType,
   duration = defaultOptions.duration,
   template,
   complete = null,
-} = {}) => {
+} = {}) {
   if (!template) {
     return;
   }
@@ -41,6 +42,7 @@ export default ({
   let startTime = null;
   let passedTime = 0;
   let progress = 0;
+
 
   // Stop, resume and restart
   let framesComplete = false;
@@ -175,4 +177,4 @@ export default ({
     console.error(e); // eslint-disable-line no-console
     caf(requestId);
   }
-};
+}

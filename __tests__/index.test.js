@@ -2,8 +2,10 @@ import easingAnimationFrames from '../src';
 
 describe('easingAnimationFrames', () => {
   it('should call template function', (done) => {
-    const template = ({ progress }) => {
-      expect(progress).toBe(0);
+    const mock = jest.fn();
+    const template = () => {
+      mock();
+      expect(mock).toHaveBeenCalled();
       done();
     };
     easingAnimationFrames({ template });

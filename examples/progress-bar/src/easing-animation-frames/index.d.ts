@@ -34,15 +34,15 @@ export type EasingType =
 export interface EasingAnimationFramesOptions {
   easingType?: EasingType;
   duration?: number;
-  template: (options: TemplateOptions) => void;
-  complete?: () => void;
+  template: TemplateFunction;
+  complete?: {(): void};
 }
 
 export interface RestartFramesOptions {
   restartEasingType?: EasingType;
   restartDuration?: number;
-  restartTemplate: (options: TemplateOptions) => void;
-  restartComplete?: () => void;
+  restartTemplate: TemplateFunction;
+  restartComplete?: {(): void};
 }
 
 export interface TemplateOptions {
@@ -51,6 +51,7 @@ export interface TemplateOptions {
   resumeFrames?: ResumeFramesFunction,
   restartFrames?: RestartFramesFunction
 }
+export type TemplateFunction = {(options: TemplateOptions): void};
 
 export type StopFramesFunction = {(): void} | null | undefined
 export type ResumeFramesFunction = {(): void} | null | undefined

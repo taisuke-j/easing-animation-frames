@@ -20,7 +20,6 @@ yarn-error.log*
 # Ignoring for npm
 __tests__
 docs
-example
-.babelrc
+examples
 .eslintrc
 .travis.yml
