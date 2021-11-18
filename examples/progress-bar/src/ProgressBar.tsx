@@ -74,6 +74,7 @@ function ProgressBar({ percentage }: ProgressBarProps) {
 
     easingAnimationFrames(animationOptions);
 
+    // On unmount
     return () => {
       isMounted.current = false;
     }

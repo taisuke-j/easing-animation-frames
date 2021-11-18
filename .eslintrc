@@ -5,5 +5,9 @@
   },
   "globals": {
     "window": true
-  }
+  },
+  "rules": {
+    "quotes": "off",
+    "operator-linebreak": "off"
+}
 }

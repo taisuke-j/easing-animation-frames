@@ -1,10 +1,14 @@
-import * as eases from 'eases-jsnext';
+import * as eases from "eases-jsnext";
 
 // Polyfills
-const raf = (typeof window !== 'undefined' && window.requestAnimationFrame)
-  ? window.requestAnimationFrame : ((callback) => setTimeout(callback, 1000 / 60));
-const caf = (typeof window !== 'undefined' && window.cancelAnimationFrame)
-  ? window.cancelAnimationFrame : ((id) => clearTimeout(id));
+const raf =
+  typeof window !== "undefined" && window.requestAnimationFrame
+    ? window.requestAnimationFrame
+    : (callback) => setTimeout(callback, 1000 / 60);
+const caf =
+  typeof window !== "undefined" && window.cancelAnimationFrame
+    ? window.cancelAnimationFrame
+    : (id) => clearTimeout(id);
 
 /**
  * EASING ANIMATION FRAMES
@@ -16,7 +20,7 @@ const caf = (typeof window !== 'undefined' && window.cancelAnimationFrame)
 
 const defaultOptions = {
   duration: 4000,
-  easingType: 'cubicInOut',
+  easingType: "cubicInOut",
 };
 
 export default ({
@@ -25,6 +29,7 @@ export default ({
   template,
   complete = null,
 } = {}) => {
+  // template is the only required parameter
   if (!template) {
     return;
   }
