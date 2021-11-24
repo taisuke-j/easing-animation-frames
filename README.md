@@ -1,5 +1,7 @@
 # Easing Animation Frames
 
+[![npm version](https://badge.fury.io/js/easing-animation-frames.svg)](https://badge.fury.io/js/easing-animation-frames)
+
 ```
 npm i easing-animation-frames
 ```
