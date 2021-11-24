@@ -1,6 +1,7 @@
 # Easing Animation Frames
 
 [![npm version](https://badge.fury.io/js/easing-animation-frames.svg)](https://badge.fury.io/js/easing-animation-frames)
+[![Bundle size](https://img.shields.io/bundlephobia/min/easing-animation-frames.svg)](https://bundlephobia.com/result?p=easing-animation-frames)
 
 ```
 npm i easing-animation-frames
