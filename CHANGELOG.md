@@ -26,3 +26,8 @@
 
 - Updated eslint and prettier settings
 - Added Github Action job for tests
+
+## 1.0.4 (2022-02-17)
+
+- Updated libraries
+- Added readme
