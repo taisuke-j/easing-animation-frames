@@ -1,6 +1,6 @@
 # Easing Animation Frames
 
-[![test](https://github.com/taisuke-j/easing-animation-frames/actions/workflows/test.yaml/badge.svg?branch=master)](https://github.com/taisuke-j/easing-animation-frames/actions/workflows/test.yaml)
+[![test](https://github.com/taisuke-j/easing-animation-frames/actions/workflows/test.yaml/badge.svg?branch=master&event=push)](https://github.com/taisuke-j/easing-animation-frames/actions/workflows/test.yaml)
 [![npm version](https://badge.fury.io/js/easing-animation-frames.svg)](https://badge.fury.io/js/easing-animation-frames)
 [![Bundle size](https://img.shields.io/bundlephobia/min/easing-animation-frames.svg)](https://bundlephobia.com/result?p=easing-animation-frames)
 
