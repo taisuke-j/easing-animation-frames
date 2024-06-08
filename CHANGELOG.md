@@ -31,3 +31,7 @@
 
 - Updated libraries
 - Added readme
+
+## 1.0.6 (2024-06-09)
+
+- Updated dependencies

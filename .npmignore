@@ -22,4 +22,3 @@ __tests__
 docs
 examples
 .eslintrc
-.travis.yml
